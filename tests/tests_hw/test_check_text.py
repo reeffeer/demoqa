@@ -6,6 +6,7 @@ from pages.elements import ElementsPage
 def test_check_text_footer(browser):
     demoqa_page = DemoQa(browser)
     demoqa_page.visit()
+    assert demoqa_page.equal_url()
     demoqa_page.footer.find_element()
     footer_text = demoqa_page.footer.get_text()
     expected_footer_text = '© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.'
@@ -16,7 +17,9 @@ def test_check_text_on_center_elements_page(browser):
     demoqa_page = DemoQa(browser)
     elements_page = ElementsPage(browser)
     demoqa_page.visit()
+    assert demoqa_page.equal_url()
     demoqa_page.btn_elements.click()
+    assert elements_page.equal_url()
     central_text = elements_page.central_text.get_text()
     expected_text = 'Please select an item from left to start practice.'
     assert central_text == expected_text, f"Expected: '{expected_text}', but got: '{central_text}'"
