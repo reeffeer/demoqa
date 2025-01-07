@@ -14,11 +14,8 @@ def test_check_text_footer(browser):
 
 
 def test_check_text_on_center_elements_page(browser):
-    demoqa_page = DemoQa(browser)
     elements_page = ElementsPage(browser)
-    demoqa_page.visit()
-    assert demoqa_page.equal_url()
-    demoqa_page.btn_elements.click()
+    elements_page.visit()
     assert elements_page.equal_url()
     central_text = elements_page.central_text.get_text()
     expected_text = 'Please select an item from left to start practice.'
