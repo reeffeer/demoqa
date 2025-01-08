@@ -15,6 +15,7 @@ def test_check_text_footer(browser):
 
 def test_check_text_on_center_elements_page(browser):
     elements_page = ElementsPage(browser)
+
     elements_page.visit()
     assert elements_page.equal_url()
     central_text = elements_page.central_text.get_text()

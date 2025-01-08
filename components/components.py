@@ -32,3 +32,6 @@ class WebElement:
             # self.driver.execute_script("arguments[0].click();", element)
         except Exception as e:
             print(f"Ошибка при клике на элемент: {e}")
+
+    def visible(self):
+        return self.find_element().is_displayed()
