@@ -5,6 +5,7 @@ from pages.elements import ElementsPage
 
 def test_check_text_footer(browser):
     demoqa_page = DemoQa(browser)
+
     demoqa_page.visit()
     assert demoqa_page.equal_url()
     demoqa_page.footer.find_element()
