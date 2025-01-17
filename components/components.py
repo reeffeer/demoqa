@@ -1,6 +1,9 @@
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 
 
 class WebElement:
@@ -15,9 +18,10 @@ class WebElement:
 
     def find_element(self):
         try:
-            return self.driver.find_element(self.get_by_type(), self.locator)
+            return WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located((self.get_by_type(), self.locator)))
         except NoSuchElementException as e:
             print(f"Элемент не найден: {e}")
+            return None
 
     def find_elements(self):
         try:
@@ -31,11 +35,10 @@ class WebElement:
         return False
 
     def exist(self):
-        try:
-            self.find_element()
+        if self.find_element():
             return True
-        except NoSuchElementException:
-            return False
+
+        return False
 
     def not_exist(self):
         element = self.find_element()
@@ -62,6 +65,14 @@ class WebElement:
 
     def send_keys(self, text: str):
         self.find_element().send_keys(text)
+
+    @staticmethod
+    def fill_form(elements, params):
+        if len(elements) != len(params):
+            raise ValueError("Number of elements and parameters should be the same")
+
+        for el, par in zip(elements, params):
+            el.send_keys(par)
 
     def clear(self):
         self.send_keys(Keys.CONTROL + 'a')
@@ -92,3 +103,10 @@ class WebElement:
         else:
             print('Locator type ' + self.locator_type + ' is incorrect')
             return False
+
+    def check_scc(self, style, value=''):
+        return self.find_element().value_of_css_property(style) == value
+
+    def select_by_index(self, index: int):
+        return Select(self.find_element()).select_by_index(index)
+
