@@ -1,5 +1,3 @@
-import time
-
 from conftest import browser
 from pages.form_page import FormPage
 

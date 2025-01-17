@@ -1,5 +1,3 @@
-import time
-
 from conftest import browser
 from pages.text_box_page import TextBox
 

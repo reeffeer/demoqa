@@ -1,11 +1,14 @@
 import logging
 
+from components.components import WebElement
+
 
 class BasePage:
 
     def __init__(self, driver, base_url):
         self.base_url = base_url
         self.driver = driver
+        self.viewport = WebElement(driver, "head > meta[name='viewport']")
 
     def visit(self):
         return self.driver.get(self.base_url)

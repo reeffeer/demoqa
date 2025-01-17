@@ -30,3 +30,5 @@ class WebTables(BasePage):
         self.previous = WebElement(driver, "div.-previous> button")
         self.total_pages = WebElement(driver, "div.-center > span.-pageInfo > span")
         self.page_number = WebElement(driver, "span.-pageInfo > div > input[type=number]")
+
+        self.header = WebElement(driver, "div.rt-thead.-header > div > div")
